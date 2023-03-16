@@ -1,0 +1,24 @@
+software =
+{
+	version = "0.1";    
+	u54 = {
+	hardware-compatibility: [ "1.0" ];
+	files: (
+		{
+			filename = "simple_ota_hello.py";
+			path = "/home/root/swupdate/simple_ota.py";
+			sha256 = "d5f3f31e6f709d34e04c5c43ceab3f3791ccdd1e060d558636bd9af3e4cf4101";
+			#version = "2021.1";
+			#name = "simple_ota";		
+			#install-if-different = True;
+            	}
+	);
+	scripts: (
+		{
+			filename = "update.sh";
+			type = "postinstall";
+			sha256 = "8948caf28e9df1c3514c5b05fd145abca7bbc9b2becc5b4b40484f667387831a";
+		}
+	);
+};
+}

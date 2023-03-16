@@ -1,0 +1,46 @@
+software =
+{
+	version = "0.1.0";
+
+	u54 = {
+
+		embedded-script ="
+
+
+function writeToFile (filename, data)
+	local file=io.open(filename, 'a')
+	file:write(data)
+	file:close()
+end
+
+
+function update_version(image)
+	
+	for k,l in pairs(image) do
+		swupdate.trace(\"image[\" .. tostring(k) .. \"] = \" .. tostring(l))
+	end
+	data = image.name
+	filename = image.path
+	writeToFile(filename, data)
+	
+	data = image.version
+	filename = image.path
+	writeToFile(filename, data)
+	
+	return true,image
+end ";
+
+		hardware-compatibility: [ "1.0"];		
+		files: (
+			{
+				filename = "sw-revisions";
+				path = "/etc/sw-revisions";
+				hook = "update_version"
+				version = "2021.1";
+				name = "simple_ota";
+				install-if-different = True;
+			}
+		);
+			
+	};
+}
